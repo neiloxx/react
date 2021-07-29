@@ -6,7 +6,16 @@
   "extends": [
     "plugin:react/recommended",
     "airbnb",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -14,7 +23,8 @@
       "jsx": true
     },
     "ecmaVersion": 12,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "settings": {
@@ -41,6 +51,7 @@
         "allowExpressions": true
       }
     ],
+    "react/jsx-one-expression-per-line": "off",
     "no-magic-numbers": "off",
     "@typescript-eslint/no-magic-numbers": [
       "error",
@@ -49,6 +60,7 @@
         "ignore": [-1, 0, 1]
       }
     ],
+    "arrow-parens": "off",
     "no-console": "warn",
     "indent": [
       "warn",
