@@ -58,5 +58,5 @@
           "SwitchCase": 1
       }]
   },
-  "ignorePatterns": ["webpack.config.js"]
+  "ignorePatterns": ["webpack.*.js"]
 }
