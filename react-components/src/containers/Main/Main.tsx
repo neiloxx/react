@@ -5,7 +5,7 @@ import './style.scss';
 const Main: React.FC = () => {
   return (
     <main className="main">
-      <p>some text</p>
+      <h2 className="main__title">some text</h2>
     </main>
   );
 };
