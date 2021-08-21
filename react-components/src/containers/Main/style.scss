@@ -7,3 +7,106 @@
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.09);
 }
+
+.card {
+  width: 250px;
+  background-color: #fffffff2;
+  border-radius: 10%;
+  transition: filter ease-in 150ms;
+  box-shadow: 0 1px 5px 0 #00000085;
+  filter: brightness(0.93);
+  overflow: hidden;
+
+
+  &:hover {
+    filter: brightness(1);
+  }
+
+  &:hover &__image-container-image {
+    transform: scale(1.1);
+  }
+
+  &__image-container {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    position: relative;
+
+    &-image {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      height: 60%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform ease-in-out 300ms;
+    }
+
+    &-description {
+      width: 100%;
+      padding: 5px;
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.63);
+      position: absolute;
+      bottom: 5px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 10px;
+    margin: 5px auto;
+
+    &-item {
+      border-radius: 5px;
+      display: inline-block;
+      background-color: rgba(169, 169, 169, 0.34);
+      width: fit-content;
+      margin: 2px;
+
+      &:hover {
+        background-color: rgba(138, 138, 138, 0.34);
+      }
+
+      &-link {
+        padding: 5px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        color: #171616;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    text-transform: capitalize;
+    color: darkslategray;
+    text-align: center;
+  }
+
+  &__link {
+    display: block;
+    text-align: center;
+    padding: 5px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+.watch-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("../../assets/icons/eye.svg");
+}
