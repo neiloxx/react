@@ -26,7 +26,11 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
   "settings": {
     "import/resolver": {
       "typescript": {}
@@ -35,8 +39,17 @@
   "rules": {
     "prettier/prettier": "error",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "@typescript-eslint/no-use-before-define": [
+      "error"
+    ],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -45,6 +58,7 @@
         "tsx": "never"
       }
     ],
+    "react/prop-types": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
@@ -57,7 +71,11 @@
       "error",
       {
         "ignoreArrayIndexes": true,
-        "ignore": [-1, 0, 1]
+        "ignore": [
+          -1,
+          0,
+          1
+        ]
       }
     ],
     "arrow-parens": "off",
@@ -77,5 +95,7 @@
       }
     ]
   },
-  "ignorePatterns": ["webpack.*.js"]
+  "ignorePatterns": [
+    "webpack.*.js"
+  ]
 }
