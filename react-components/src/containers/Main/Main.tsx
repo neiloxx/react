@@ -8,15 +8,17 @@ const Main: React.FC = () => {
   return (
     <main className="main">
       <h2 className="main__title">some text</h2>
-      {cards.map(card => (
-        <Card
-          name={card.name}
-          image={card.image}
-          url={card.url}
-          cities={card.cities}
-          key={card.name}
-        />
-      ))}
+      <div className="main__cards-field">
+        {cards.map(card => (
+          <Card
+            name={card.name}
+            image={card.image}
+            url={card.url}
+            cities={card.cities}
+            key={card.name}
+          />
+        ))}
+      </div>
     </main>
   );
 };

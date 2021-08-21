@@ -1,6 +1,8 @@
 import React from 'react';
 import { ICard } from '../../collections/cards';
 
+import './style.scss';
+
 const Card: React.FC<ICard> = ({ name, image, url, cities }) => {
   return (
     <div className="card">
@@ -9,6 +11,7 @@ const Card: React.FC<ICard> = ({ name, image, url, cities }) => {
           className="card__image-container-image"
           src={image}
           alt={`${name}`}
+          height={200}
         />
         <figcaption className="card__image-container-description">
           {name}
