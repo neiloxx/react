@@ -78,6 +78,7 @@
         ]
       }
     ],
+    "jsx-a11y/no-onchange": "off",
     "arrow-parens": "off",
     "no-console": "warn",
     "indent": [
