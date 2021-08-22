@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "allowJs": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "module": "ES2020",
+    "resolveJsonModule": true,
+    "checkJs": true,
+    "disableSizeLimit": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "noEmit": true,
+  },
+  "include": [
+    "src"
+  ]
+}
