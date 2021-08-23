@@ -88,6 +88,7 @@
         "SwitchCase": 1
       }
     ],
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/indent": [
       "warn",
       2,
