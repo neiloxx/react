@@ -10,11 +10,12 @@
     color: snow;
   }
 
-  &__cards-field {
+  &__articles-field {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    margin-top: 50px;
   }
 }
