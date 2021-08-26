@@ -65,6 +65,7 @@
         "allowExpressions": true
       }
     ],
+    "react-hooks/exhaustive-deps": "off",
     "react/jsx-one-expression-per-line": "off",
     "no-magic-numbers": "off",
     "@typescript-eslint/no-magic-numbers": [
@@ -74,7 +75,9 @@
         "ignore": [
           -1,
           0,
-          1
+          1,
+          2,
+          10
         ]
       }
     ],
@@ -89,6 +92,7 @@
       }
     ],
     "@typescript-eslint/no-explicit-any": "off",
+    "no-nested-ternary": "off",
     "@typescript-eslint/indent": [
       "warn",
       2,
