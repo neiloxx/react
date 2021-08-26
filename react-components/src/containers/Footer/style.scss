@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  margin-top: auto;
+  background-color: rgb(224, 220, 220, .3);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 24%);
+
+  &__link {
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

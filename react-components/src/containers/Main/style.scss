@@ -1,0 +1,31 @@
+.main {
+  max-width: 1600px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.09);
+
+  &__title {
+    color: snow;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 10px 0;
+  }
+
+  &__cards-field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-around;
+    margin: 30px;
+  }
+}
+
+.watch-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("../../assets/icons/eye.svg");
+}

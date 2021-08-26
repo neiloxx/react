@@ -1,0 +1,11 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__title {
+    text-transform: capitalize;
+    color: white;
+    font-weight: 900;
+  }
+}
