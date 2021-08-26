@@ -1,35 +1,56 @@
-import React, { ChangeEvent, useState } from 'react';
-import { AxiosResponse } from 'axios';
-import axiosInstance, { API_KEY } from '../../api/api';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { getResponse } from '../../api/api';
 import { SortType } from '../../types';
+import pageHandler from '../../utils/pageHandler';
 
 import './style.scss';
 
 interface IForm {
   setArticles: (formValues: any) => void;
+  setResults: (formValues: any) => void;
 }
 
-const SearchForm: React.FC<IForm> = ({ setArticles }) => {
+const SearchForm: React.FC<IForm> = ({ setArticles, setResults }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
+  const [page, setPage] = useState<number>(1);
+  const [artOnPage, setArtOnPage] = useState<number>(10);
+  const [pageQuantity, setPageQuantity] = useState<number>(0);
+
+  const handleFetch = (
+    sort: SortType,
+    curPage: number,
+    articlesOnPage: number,
+  ): void => {
+    setIsLoading(true);
+    setArticles([]);
+    try {
+      getResponse(searchValue, sort, articlesOnPage, curPage).then(res => {
+        setArticles(res.data.articles);
+        setArtOnPage(articlesOnPage);
+        setResults(res.data.totalResults);
+        setPageQuantity(pageHandler(res.data.totalResults, artOnPage));
+      });
+    } catch (err: any) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSubmit = async (
     e: ChangeEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      const response: AxiosResponse = await axiosInstance.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=8`,
-      );
-      setArticles(response.data.articles);
-    } catch (err: any) {
-      console.error(e);
-    } finally {
-      setIsLoading(false);
-    }
+    handleFetch(sortBy, page, artOnPage);
   };
+
+  useEffect(() => {
+    if (searchValue) {
+      handleFetch(sortBy, page, artOnPage);
+    }
+  }, [sortBy, page, artOnPage]);
 
   return (
     <form className="search-form" onSubmit={handleSubmit}>
@@ -51,17 +72,6 @@ const SearchForm: React.FC<IForm> = ({ setArticles }) => {
         />
       </div>
       <div className="search-form__radios">
-        <label className="search-form__radios-label" htmlFor="radio-relevancy">
-          <input
-            className="search-form__radios-input"
-            id="radio-relevancy"
-            type="radio"
-            value={SortType.relevancy}
-            checked={sortBy === SortType.relevancy}
-            onChange={() => setSortBy(SortType.relevancy)}
-          />
-          relevancy
-        </label>
         <label className="search-form__radios-label" htmlFor="radio-popularity">
           <input
             className="search-form__radios-input"
@@ -72,6 +82,17 @@ const SearchForm: React.FC<IForm> = ({ setArticles }) => {
             onChange={() => setSortBy(SortType.popularity)}
           />
           popularity
+        </label>
+        <label className="search-form__radios-label" htmlFor="radio-relevancy">
+          <input
+            className="search-form__radios-input"
+            id="radio-relevancy"
+            type="radio"
+            value={SortType.relevancy}
+            checked={sortBy === SortType.relevancy}
+            onClick={() => setSortBy(SortType.relevancy)}
+          />
+          relevancy
         </label>
         <label className="search-form__radios-label" htmlFor="radio-published">
           <input
@@ -84,6 +105,64 @@ const SearchForm: React.FC<IForm> = ({ setArticles }) => {
           />
           published
         </label>
+      </div>
+      <div className="search-form__controls">
+        <p className="search-form__controls__text">
+          page:{' '}
+          <span>
+            {pageQuantity && page} / {pageQuantity}
+          </span>
+        </p>
+        <label
+          className="search-form__controls__label-input"
+          htmlFor="page-input">
+          go to{' '}
+          <input
+            className="search-form__controls__input-page"
+            id="page-input"
+            placeholder="Enter number"
+            onChange={e => {
+              if (+e.target.value > 0 && +e.target.value <= pageQuantity) {
+                setPage(+e.target.value);
+              }
+            }}
+          />{' '}
+          page
+        </label>
+        <label
+          className="search-form__controls__label-select"
+          htmlFor="art-on-page-select">
+          Result on page
+          <select
+            className="search-form__controls__select"
+            id="art-on-page-select"
+            value={artOnPage}
+            onChange={e => {
+              setArtOnPage(+e.target.value);
+              setPage(1);
+            }}>
+            <option className="search-form__controls__select-option">5</option>
+            <option className="search-form__controls__select-option">8</option>
+            <option className="search-form__controls__select-option">10</option>
+            <option className="search-form__controls__select-option">15</option>
+          </select>
+        </label>
+        <div className="search-form__controls__btns">
+          <button
+            type="button"
+            className="search-form__controls__btns-btn"
+            onClick={() => setPage(page - 1)}
+            disabled={page === 1 || isLoading}>
+            previous page
+          </button>
+          <button
+            type="button"
+            className="search-form__controls__btns-btn"
+            onClick={() => setPage(page + 1)}
+            disabled={page >= pageQuantity || isLoading}>
+            next page
+          </button>
+        </div>
       </div>
     </form>
   );
