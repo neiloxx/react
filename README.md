@@ -6,5 +6,6 @@ This repository will contain completed tasks for current React course. Below you
 
 * [React. Components](https://neiloxx.github.io/react/react-components/)
 * [React. Forms](https://neiloxx.github.io/react/react-forms/)
-* React. API:
+* [React. API](https://neiloxx.github.io/react/react-api/). To use search you need to use local version because of
+  news.api policy.
 * React. Routing:
